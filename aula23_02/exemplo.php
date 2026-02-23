@@ -10,14 +10,29 @@
 <div class="container py-3">
 <h1>Primeiro Exemplo PHP</h1>
 <h3>Data de hoje: <?php echo date("d/m/Y"); ?></h3>
-<form method="post" action="resposta.php">
+<form method="post" action="">
 <div class="mb-3">
               <label for="nome" class="form-label ">Informe seu nome : </label>
               <input type="text" id="nome" name="nome" class="form-control" required="">
             </div>
 <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+
+<?php 
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nome = $_POST["nome"];
+        echo "<p>Olá, $nome! Bem-vindo</p>";}
+    else {
+        echo "<p>Por favor, preencha o formulário acima.</p>";
+    }
+
+?>
+
+
 </div>
 </body>
 </html>
