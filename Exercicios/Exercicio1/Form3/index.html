@@ -12,7 +12,7 @@
     <h1 class="text-center">Sample Form</h1>
     
     <form method="post " >
-    <table class="table text-end">
+    <table class="table text-end table-borderless">
         <tr>
             <td class="col-2"><label for="name" class="form-label">Partner Name</label></td>
             <td class="col-4"><input type="text" id="name" name="name" class="form-control" required="" ></td>
@@ -30,10 +30,30 @@
             <td colspan="3"><textarea id="address" name="address" class="form-control" rows="4" required=""></textarea></td>
         </tr>
         <tr>
-            <td></td>
+            <td class="col-2"><label for="contactStartDate" class="form-label">Contact Start Date</label></td>
+            <td class="col-4"><input type="text" id="contactStartDate" name="contactStartDate" class="form-control" required="" ></td>
+            <td class="col-2"><label for="contactExpiryDate" class="form-label">Contact Expiry Date</label></td>
+            <td class="col-4"><input type="text" id="contactExpiryDate" name="contactExpiryDate" class="form-control" required=""></td>
+        </tr>
+        <tr>
+            <td class="col-2"><label for="minimumLoanAmount" class="form-label">Minimum Loan Amount</label></td>
+            <td class="col-4"><input type="text" id="minimumLoanAmount" name="minimumLoanAmount" class="form-control" required="" ></td>
+            <td class="col-2"><label for="maximumLoanAmount" class="form-label">Maximum Loan Amount</label></td>
+            <td class="col-4"><input type="text" id="maximumLoanAmount" name="maximumLoanAmount" class="form-control" required=""></td>
+        </tr>
+        <tr>
+            <td class="col-2"><label for="interestRate" class="form-label">Interest Rate</label></td>
+            <td class="col-4"><input type="text" id="interestRate" name="interestRate" class="form-control" required="" ></td>
+            <td class="col-2"><label for="depositAmount" class="form-label">Deposit Amount</label></td>
+            <td class="col-4"><input type="text" id="depositAmount" name="depositAmount" class="form-control" required=""></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="text-center">
+                <button type="submit" class="btn btn-primary col-1 m-3">Save</button>
+            </td>
         </tr>
     </table>
-    <button type="submit" class="btn btn-primary col-1 m-3">Enviar</button>
+    
     </form>
     
 
