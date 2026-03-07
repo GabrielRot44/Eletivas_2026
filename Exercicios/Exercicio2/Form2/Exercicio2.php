@@ -24,7 +24,7 @@
                 <label for="number2" class="form-label">Informe o segundo número</label>
                 <input type="number" id="number2" name="number2" class="form-control" required="">
             </div>
-<button type="submit" class="btn btn-primary">Somar</button>
+<button type="submit" class="btn btn-primary">Subtrair</button>
 </form>
 
 <?php 
@@ -32,10 +32,10 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $number = $_POST["number"];
         $number2 = $_POST["number2"];
-        $soma = $number + $number2;
+        $subtracao = $number - $number2;
         echo "
         <div class='container py-3 text-center font-bold'>
-        <p>A soma dos números $number + $number2 = $soma</p>
+        <p>A subtração dos números $number - $number2 = $subtracao</p>
         </div>
         ";}
     else {
