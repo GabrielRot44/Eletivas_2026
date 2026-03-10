@@ -17,23 +17,26 @@
 
 <form method="post" action="">
             <div class="mb-3">
-              <label for="raio" class="form-label ">Raio do círculo</label>
-              <input type="number" id="raio" name="raio" class="form-control" required="">
+              <label for="altura" class="form-label ">Altura:</label>
+              <input type="number" id="altura" name="altura" class="form-control" required="">
+            </div>
+            <div class="mb-3">
+              <label for="largura" class="form-label ">Largura:</label>
+              <input type="number" id="largura" name="largura" class="form-control" required="">
             </div>
 
-<button type="submit" class="btn btn-primary">Calcular de área</button>
+<button type="submit" class="btn btn-primary">Calcular perímetro</button>
 </form>
 
 <?php 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $raio = $_POST["raio"];
-        $pi = pi();
-        $area =$pi * ($raio ** 2);
-        echo("
+        $altura = $_POST["altura"];
+        $largura = $_POST["largura"];
+        $perimetro = ($altura * 2) + ($largura * 2);
+        echo ("
         <div class='container py-3 text-center font-bold'>
-        <p>pi = ($pi)</p>
-        <p>O círculo de raio($raio) tem área = $area</p>
+        <p>O perímetro desse retângulo de $altura x $largura é $perimetro</p>
         </div>
         ");
     }
