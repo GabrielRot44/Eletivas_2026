@@ -17,12 +17,12 @@
 
 <form method="post" action="">
             <div class="mb-3">
-              <label for="peso" class="form-label ">Peso:</label>
-              <input type="number" step="any" id="peso" name="peso" class="form-control" required="">
+              <label for="preco" class="form-label ">preco:</label>
+              <input type="number" step="any" id="preco" name="preco" class="form-control" required="">
             </div>
             <div class="mb-3">
-              <label for="altura" class="form-label ">Altura em metros:</label>
-              <input type="number" step="any" id="altura" name="altura" class="form-control" required="">
+              <label for="desconto" class="form-label ">desconto(%):</label>
+              <input type="number" step="any" id="desconto" name="desconto" class="form-control" required="">
             </div>
 
 <button type="submit" class="btn btn-primary">Calcular</button>
@@ -31,19 +31,17 @@
 <?php 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $peso = $_POST["peso"];
-        $altura = $_POST["altura"];
-        $imc = $peso / ($altura ** 2);
-        if($altura > 3){
-            echo"<div class='container py-3 text-center font-bold'>infome sua altura em metros!</div>";
-        }
-        else{
-            echo("
-            <div class='container py-3 text-center font-bold'>
-            <p>Seu IMC = $imc.</p>
-            </div>
-            ");
-        }
+        $preco = $_POST["preco"];
+        $desconto = $_POST["desconto"];
+        $valor_descontado = $preco * ($desconto/100);
+        $valor_final = $preco - $valor_descontado;
+        $valor_final_f = number_format($valor_final, 2,",",".");
+        $preco_f = number_format($preco, 2, ",",".");
+        echo("
+        <div class='container py-3 text-center font-bold'>
+        <p>O produto de R$ $preco_f com $desconto% de desconto vale R$ $valor_final_f </p>
+        </div>
+        ");
     }
 
 ?>
