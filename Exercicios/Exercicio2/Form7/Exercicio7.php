@@ -18,7 +18,7 @@
 <form method="post" action="">
             <div class="mb-3">
               <label for="temp" class="form-label ">Temperatura em ºF</label>
-              <input type="number" id="temp" name="temp" class="form-control" required="">
+              <input type="number" id="temp" name="temp" class="form-control" step="any" required="">
             </div>
 
 <button type="submit" class="btn btn-primary">Fazer conversão</button>

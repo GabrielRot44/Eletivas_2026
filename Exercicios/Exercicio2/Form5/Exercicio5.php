@@ -18,15 +18,15 @@
 <form method="post" action="">
             <div class="mb-3">
               <label for="nota" class="form-label ">Nota 3 :</label>
-              <input type="number" id="nota" name="nota" class="form-control" required="">
+              <input type="number" id="nota" name="nota" class="form-control" step="any" required="">
             </div>
             <div class="mb-3">
                 <label for="nota2" class="form-label">Nota 2 :</label>
-                <input type="number" id="nota2" name="nota2" class="form-control" required="">
+                <input type="number" id="nota2" name="nota2" class="form-control" step="any" required="">
             </div>
             <div class="mb-3">
                 <label for="nota3" class="form-label">Nota 3 :</label>
-                <input type="number" id="nota3" name="nota3" class="form-control" required="">
+                <input type="number" id="nota3" name="nota3" class="form-control" step="any"  required="">
             </div>
 
 <button type="submit" class="btn btn-primary">Fazer média</button>

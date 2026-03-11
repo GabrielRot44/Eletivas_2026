@@ -18,7 +18,7 @@
 <form method="post" action="">
             <div class="mb-3">
               <label for="raio" class="form-label ">Raio do círculo</label>
-              <input type="number" id="raio" name="raio" class="form-control" required="">
+              <input type="number" id="raio" name="raio" class="form-control" step="any" required="">
             </div>
 
 <button type="submit" class="btn btn-primary">Calcular perímetro</button>

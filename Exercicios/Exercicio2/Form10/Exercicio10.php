@@ -18,11 +18,11 @@
 <form method="post" action="">
             <div class="mb-3">
               <label for="altura" class="form-label ">Altura:</label>
-              <input type="number" id="altura" name="altura" class="form-control" required="">
+              <input type="number" id="altura" name="altura" class="form-control" step="any" required="">
             </div>
             <div class="mb-3">
               <label for="largura" class="form-label ">Largura:</label>
-              <input type="number" id="largura" name="largura" class="form-control" required="">
+              <input type="number" id="largura" name="largura" class="form-control" step="any" required="">
             </div>
 
 <button type="submit" class="btn btn-primary">Calcular perímetro</button>

@@ -18,11 +18,11 @@
 <form method="post" action="">
             <div class="mb-3">
               <label for="base" class="form-label ">Base:</label>
-              <input type="number" id="base" name="base" class="form-control" required="">
+              <input type="number" id="base" name="base" class="form-control" step="any" required="">
             </div>
             <div class="mb-3">
               <label for="expoente" class="form-label ">Expoente:</label>
-              <input type="number" id="expoente" name="expoente" class="form-control" required="">
+              <input type="number" id="expoente" name="expoente" class="form-control" step="any" required="">
             </div>
 
 <button type="submit" class="btn btn-primary">Calcular</button>

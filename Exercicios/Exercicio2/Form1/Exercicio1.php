@@ -18,11 +18,11 @@
 <form method="post" action="">
             <div class="mb-3">
               <label for="number" class="form-label ">Informe o primeiro número</label>
-              <input type="number" id="number" name="number" class="form-control" required="">
+              <input type="number" step="any" id="number" name="number" class="form-control" required="">
             </div>
             <div class="mb-3">
                 <label for="number2" class="form-label">Informe o segundo número</label>
-                <input type="number" id="number2" name="number2" class="form-control" required="">
+                <input type="number" id="number2" name="number2" class="form-control" step="any" required="">
             </div>
 <button type="submit" class="btn btn-primary">Somar</button>
 </form>

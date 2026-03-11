@@ -17,29 +17,25 @@
 
 <form method="post" action="">
             <div class="mb-3">
-              <label for="number" class="form-label ">Informe o primeiro número</label>
-              <input type="number" step="any" id="number" name="number" class="form-control" required="">
+              <label for="metros" class="form-label ">Valor em metros:</label>
+              <input type="number" step="any" id="metros" name="metros" class="form-control" required="">
             </div>
-            <div class="mb-3">
-                <label for="number2" class="form-label">Informe o segundo número</label>
-                <input type="number" id="number2" name="number2" class="form-control" step="any" required="">
-            </div>
-<button type="submit" class="btn btn-primary">Subtrair</button>
+
+<button type="submit" class="btn btn-primary">Converter</button>
 </form>
 
 <?php 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $number = $_POST["number"];
-        $number2 = $_POST["number2"];
-        $subtracao = $number - $number2;
-        echo "
+        $metros = $_POST["metros"];
+        $mft = number_format($metros, 2,",",".");
+        $centimetros = $metros * 100;
+        $cft = number_format($centimetros, 2,",",".");
+        echo("
         <div class='container py-3 text-center font-bold'>
-        <p>A subtração dos números $number - $number2 = $subtracao</p>
+        <p>$mft metros tem $cft centimetros.</p>
         </div>
-        ";}
-    else {
-        echo "<p>Por favor, preencha o formulário acima.</p>";
+        ");
     }
 
 ?>
