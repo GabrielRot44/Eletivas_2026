@@ -38,7 +38,7 @@
         $capital = $_POST["capital"];
         $juros = $_POST["juros"];
         $periodo = $_POST["periodo"];
-        $capital_total = ($capital * ($juros / 100) * $periodo);
+        $capital_total = ($capital * (1 + $juros / 100) ** $periodo);
         $capital_f = number_format($capital, 2,",",".");
         $capital_final = number_format($capital_total,2 , ",",".");
         echo("
@@ -46,7 +46,7 @@
         <p>Capital inicial: R$ $capital_f </p>
         <p>Taxa de Juros: $juros% </p>
         <p>Periodo: $periodo meses </p>
-        <p>Capital Final: R$ $capital_final</p>
+        <p>Capital Final com juros compostos: R$ $capital_final</p>
         </div>
         ");
     }
