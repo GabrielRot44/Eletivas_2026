@@ -19,14 +19,15 @@
                 <div class="row inline-row mb-3">
                     <?php
                         for ($i = 1; $i <= 7; $i++) {
-                            echo "  <div class='col-md-1'> <label for='numero$i' class='form-label'>$i º Número:</label>
+                            echo "  <div class='col-md'> <label for='numero$i' class='form-label'>$i º Número:</label>
                                     <input type='number' step='any' id='numero$i' name='numeros[]' class='form-control' required>
                                     </div>";
                         }
                     ?>
                 </div>
-
-<button type="submit" class="btn btn-primary">Calcular</button>
+<div class="text-center">
+    <button type="submit" class="btn btn-primary mb-3">Calcular</button>
+</div>
 </form>
 
 <?php 
@@ -34,6 +35,9 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $numeros = $_POST["numeros"];
         $repetido = false;
+        $menor = $numeros[0];
+        $posicao = 1;
+
         for ($i = 0; $i < 7; $i++) {
             for ($o = $i +1; $o <7; $o++) {
                 if ($numeros[$i] == $numeros[$o]) {
@@ -49,16 +53,21 @@
             ");
             return;
         }
-            else{
-                $menor = 0;
-                $posicao = 0;
-                for ($i = 0 ; $i < 7; $i++) {
-                    if ($numeross[$i] < $menor) {
-                        $menor = $numeros[$i];
-                        $posicao = $i;
-                    }
+        else{
+            for ($i = 0 ; $i < 7; $i++) {
+                if ($numeros[$i] < $menor) {
+                    $menor = $numeros[$i];
+                    $posicao = $i + 1;
                 }
+            }
         }
+        echo("<div class='row text-center mb-3 font-bold'>");
+        for ($i = 0; $i < 7; $i++) {
+            $ps = $i + 1;
+            echo("<div class='col'>$ps º número é: $numeros[$i]</div>");
+        }
+        echo("</div>");
+
         echo("
         <div class='container py-3 text-center font-bold'>
         <p>O menor número é $menor e ele esta na posição $posicao</p>
