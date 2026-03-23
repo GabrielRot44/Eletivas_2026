@@ -34,39 +34,29 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $numeros = $_POST["numeros"];
-        $repetido = false;
-        for ($i = 0; $i < 2; $i++) {
-            for ($o = $i +1; $o <2; $o++) {
-                if ($numeros[$i] == $numeros[$o]) {
-                     $repetido = true;
-                }
-            }
-        }
-        if ($repetido) {
-            $valor = 0;
-            echo("<div class='row text-center mb-3 font-bold'>");
-            for ($i = 0; $i <2;$i++){
-                $valor += $numeros[$i];
-                echo("<div class='col'>".$i +1 . "º número é: $numeros[$i]</div>");
-            }
-            echo("</div>");
-            echo("
-            <div class='container py-3 text-center font-bold'> 
-            <p>O triplo da soma dos valores é: " . (3 * $valor) . "</p>
-            </div>"
-            );  
-        }
-        else{
-            $valor = 0;
-            for ($i = 0 ; $i < 2; $i++) {
-                $valor += $numeros[$i];
-                }
+
+        if ($numeros[0] == $numeros[1]) {
+            $numero = $numeros[0];
             echo("
             <div class='container py-3 text-center font-bold'>
-            <p>A soma dos valores é: $valor</p>
-            </div>"
-            );
-        }   
+            <p>Números iguais:$numero.</p>
+            </div>");
+            return;         
+        }
+        $menor = $numeros[0];
+        $maior = $numeros[1];
+        for ($i = 0 ; $i < 2; $i++) {
+            if ($numeros[$i] < $menor) {
+                $menor = $numeros[$i];
+                $maior = $numeros[1 - $i];
+            }
+        }
+
+        echo("
+        <div class='container py-3 text-center font-bold'>
+        <p>$menor $maior</p>
+        </div>
+        ");
     }
 
 ?>
