@@ -39,7 +39,8 @@ está contida na primeira -->
         echo("<div class='row inline-row mb-3 container py-3 text-center font-bold'>");
         if (strpos($palavra1, $palavra2) !== false) {
             echo("<p>'$palavra2' está contida em '$palavra1'</p>");
-        } else {
+        } 
+        else {
             echo("<p>'$palavra2' não está contida em '$palavra1'</p>");
         }
         echo("</div>");
