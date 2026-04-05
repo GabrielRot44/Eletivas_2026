@@ -23,7 +23,7 @@
                                     <input type='text' id='nome$i' name='nome[]' placeholder='Nome' class='form-control' required>
                                     </div>";
                             echo " <div class='col-3 m-2'>
-                                    <input type='number' id='preco$i' name='preco[]' placeholder='Preço' class='form-control' required>
+                                    <input type='number' id='preco$i' step='any' name='preco[]' placeholder='Preço' class='form-control' required>
                                     </div>";
                         }
                     ?>
