@@ -15,31 +15,49 @@
 <body> 
 <div class="container py-3">
 
-<form method="post" action="">
-    <div class="row inline-row mb-3">                
-    <div class='col-md'> <label for='email' class='form-label'>E-mail:</label>
-    <input type='email' id='email' name='email' class='form-control' required>
-    </div>
-    </div>
+<form method="POST">
+                <div class="row inline-row m-3 justify-content-center">
+                    <?php
+                        for ($i = 0; $i < 5; $i++) {
+                            echo " <div class='col-5 m-2'>
+                                    <input type='text' id='nome$i' name='nome[]' placeholder='Nome' class='form-control' required>
+                                    </div>";
+                            echo " <div class='col-3 m-2'>
+                                    <input type='number' id='preco$i' name='preco[]' placeholder='Preço' class='form-control' required>
+                                    </div>";
+                        }
+                    ?>
+                </div>
 <div class="text-center">
     <button type="submit" class="btn btn-primary mb-3">Calcular</button>
 </div>
 </form>
-<!-- Crie um programa em PHP que leia um endereço de e-mail e apresente apenas o domínio do
-e-mail.
-Exemplo:
-Entrada → usuario@gmail.com
-Saída → gmail.com -->
-<?php 
+<!-- 
+Crie um formulário que leia dados de 5 itens: nome e preço. 
+Leia os dados e crie um mapa ordenado onde as chaves são os nomes dos itens e os
+valores são os preços após aplicação de um imposto de 15%. 
+Exiba a lista ordenada pelos preços após a aplicação do imposto.
+-->
+<?php
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST["email"];
-        $dominio = substr(strrchr($email, "@"), 1);
-
-        echo("<div class='row inline-row mb-3 container py-3 text-center font-bold'>");
-        echo("<p>O domínio é: $dominio</p>");
-        echo("</div>");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nomes = $_POST['nome'];
+    $precos = $_POST['preco'];
+    $produtos = [];
+    for ($i = 0; $i < count($nomes); $i++) {
+        $preco = $precos[$i];
+        $preco *= 1.15;
+        $produtos[$nomes[$i]] = $preco;
     }
+    uasort($produtos, function($a, $b) {
+        return $a - $b;
+    });
+    echo "<ul class='list-group'>";
+    foreach ($produtos as $nome => $preco) {
+        echo "<li class='list-group-item'>$nome: R$ " . number_format($preco, 2, ',', '.') . "</li>";
+    }
+    echo "</ul>";
+}   
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
