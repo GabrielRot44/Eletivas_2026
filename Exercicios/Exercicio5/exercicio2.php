@@ -18,13 +18,13 @@
 <form method="POST">
                 <div class="row inline-row m-3 justify-content-center">
                     <?php
-                        for ($i = 1; $i <= 5; $i++) {
+                        for ($i = 0; $i < 5; $i++) {
                             echo " <div class='col-5 m-2'>
                                     <input type='text' id='nome$i' name='nome[]' placeholder='Nome' class='form-control' required>
                                     </div>";
-                            for ($a = 1; $a <= 3; $a++) {
+                            for ($a = 0; $a < 3; $a++) {
                             echo " <div class='col m-2'>
-                                    <input type='text' id='nota$a' name='nota[]' placeholder='Nota $a' class='form-control' required>
+                                    <input type='number' id='nota$a' name='nota[$i][]' placeholder='Nota " .($a + 1)."' class='form-control' required>
                                     </div>";     
                             }
                         }
@@ -42,7 +42,19 @@ média das notas (do maior para o menor) -->
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+    $nomes = $_POST['nome'];
+    $notas = $_POST['nota'];
+    $alunos = [];
+    for ($i = 0; $i < count($nomes); $i++) {
+        $media = array_sum($notas[$i]) / count($notas[$i]);
+        $alunos[$nomes[$i]] = $media;
+    }   
+    arsort($alunos);
+    echo "<ul class='list-group'>";
+    foreach ($alunos as $nome => $media) {
+        echo "<li class='list-group-item'>$nome: " . number_format($media, 1) . "</li>";
+    }
+    echo "</ul>";
 }
 ?>
 
