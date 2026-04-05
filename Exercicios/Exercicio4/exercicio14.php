@@ -29,7 +29,7 @@
 que pode ser lida da mesma forma de trás para frente).
 Exemplo:
 arara → é palíndromo
-computador → não é-->
+computador → não é --->
 <?php 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -26,7 +26,8 @@
             </div>
 <button type="submit" class="btn btn-primary">Multiplicar</button>
 </form>
-
+<!-- Crie um formulário que permita ao usuário inserir dois números. O script PHP deve multiplicar
+esses números e exibir o resultado. -->
 <?php 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -51,3 +52,4 @@
 </html>
 
 
+-
