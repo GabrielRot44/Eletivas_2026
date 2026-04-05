@@ -19,16 +19,15 @@
                 <div class="row inline-row m-3 justify-content-center">
                     <?php
                         for ($i = 0; $i < 5; $i++) {
-                            echo " <div class='col-5 m-2'>
+                            echo " <div class='col-2 m-2'>
                                     <input type='number' id='codigo$i' name='codigo[]' placeholder='Código' class='form-control' required>
                                     </div>";
                             echo " <div class='col-5 m-2'>
                                     <input type='text' id='nome$i' name='nome[]' placeholder='Nome' class='form-control' required>
                                     </div>";
-                            echo " <div class='col-5 m-2'>
+                            echo " <div class='col-3 m-2'>
                                     <input type='number' id='preco$i' name='preco[]' placeholder='Preço' class='form-control' required>
                                     </div>";
-                            
                         }
                     ?>
                 </div>
@@ -52,19 +51,25 @@ do produto.
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomes = $_POST['nome'];
-    $notas = $_POST['nota'];
-    $alunos = [];
+    $precos = $_POST['preco'];
+    $codigos = $_POST['codigo'];
+    $produtos = [];
     for ($i = 0; $i < count($nomes); $i++) {
-        $media = array_sum($notas[$i]) / count($notas[$i]);
-        $alunos[$nomes[$i]] = $media;
-    }   
-    arsort($alunos);
+        $preco = $precos[$i];
+        if ($preco > 100) {
+            $preco *= 0.9; 
+        }
+        $produtos[$codigos[$i]] = ['nome' => $nomes[$i], 'preco' => $preco];
+    }
+    uasort($produtos, function($a, $b) {
+        return strcmp($a['nome'], $b['nome']);
+    });
     echo "<ul class='list-group'>";
-    foreach ($alunos as $nome => $media) {
-        echo "<li class='list-group-item'>$nome: " . number_format($media, 1) . "</li>";
+    foreach ($produtos as $codigo => $produto) {
+        echo "<li class='list-group-item'>$codigo | $produto[nome]: R$ " . number_format($produto['preco'], 2, ',', '.') . "</li>";
     }
     echo "</ul>";
-}
+}   
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
