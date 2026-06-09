@@ -8,7 +8,7 @@ if (!isset($_SESSION["logado"])) {
     exit;
 }
 
-include("../includes/conexao.php");
+include("conexao.php");
 
 
 header("Content-Type: application/vnd.ms-excel");
