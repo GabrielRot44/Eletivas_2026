@@ -1,18 +1,18 @@
 <?php
 session_start();
-include("../includes/conexao.php");
+include("conexao.php");
 
 if (!isset($_SESSION["logado"])) {
     header("Location: login.php");
     exit;
 }
 
-// 🔎 filtros
+//filtros
 $data_inicio = $_GET['data_inicio'] ?? '';
 $data_fim = $_GET['data_fim'] ?? '';
 $cliente = $_GET['cliente'] ?? '';
 
-// ✅ QUERY PRINCIPAL (SÓ CONCLUÍDOS)
+//QUERY PRINCIPAL
 $sql = "
     SELECT p.id, c.nome, p.total, p.data_pedido
     FROM pedidos p
@@ -35,7 +35,7 @@ $sql .= " ORDER BY p.data_pedido DESC";
 
 $result = $conn->query($sql);
 
-// 📊 RESUMOS (SÓ CONCLUÍDOS)
+// Resumo de faturamento
 $total_geral = $conn->query("
     SELECT SUM(total) as total 
     FROM pedidos 
@@ -81,7 +81,7 @@ $total_mes = $conn->query("
 
     <h2 class="mb-4 text-center">📊 Relatório de Faturamento</h2>
 
-    <!-- 📊 RESUMO -->
+    <!--RESUMO -->
     <div class="row mb-4">
         <div class="col-md-4">
             <div class="alert alert-success text-center">
@@ -100,7 +100,7 @@ $total_mes = $conn->query("
         </div>
     </div>
 
-    <!-- 🔎 FILTROS -->
+    <!-- FILTROS -->
     <form method="GET" class="row g-3 mb-4">
 
         <div class="col-md-3">
@@ -127,7 +127,7 @@ $total_mes = $conn->query("
         <a href="exportar_faturamento.php" class="btn btn-success">📥 Excel</a>
     </div>
 
-    <!-- 📋 TABELA -->
+    <!--TABELA -->
     <table class="table table-bordered table-striped">
 
         <thead class="table-dark">

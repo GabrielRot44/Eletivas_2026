@@ -6,7 +6,7 @@ if (!isset($_SESSION["logado"])) {
     exit;
 }
 include("conexao.php");
-
+//Validação de CPF
 function validarCPF($cpf) {
     $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
@@ -28,7 +28,7 @@ function validarCPF($cpf) {
 
     return true;
 }
-
+// Processamento do formulário de cadastro de cliente
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nome = $_POST["nome"];
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+    $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
     $stmt = $conn->prepare("SELECT id FROM clientes WHERE cpf = ?");
     $stmt->bind_param("s", $cpf);
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>";
         exit;
     }
-
+    // Se passar por toda a validação, insere o cliente no banco de dados
     $stmt = $conn->prepare("INSERT INTO clientes (nome, cpf, telefone, email) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $nome, $cpf, $telefone, $email);
 

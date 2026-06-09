@@ -1,12 +1,12 @@
 <?php
 session_start();
-include("../includes/conexao.php");
-
+include("conexao.php");
+//Verifica de o usuario esta logado, caso não esteja, redireciona para a página de login
 if (!isset($_SESSION["logado"])) {
     header("Location: login.php");
     exit;
 }
-
+//Manipulação de dados para o dashboard
 $dados_grafico = $conn->query("
     SELECT DATE(data_pedido) as data, SUM(total) as total
     FROM pedidos
@@ -206,7 +206,7 @@ body {
     </div>
 
 </div>
-
+<!-- Scripts para o gráfico -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const ctx = document.getElementById('graficoFaturamento');

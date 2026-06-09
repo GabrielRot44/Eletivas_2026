@@ -1,5 +1,5 @@
 <?php
-include("../includes/conexao.php");
+include("conexao.php");
 
 // Cliente
 $nome_cliente = $_POST["cliente_nome"] ?? '';
@@ -26,7 +26,7 @@ if (count($produtos) == 0) {
 }
 
 
-// Buscar produtos de uma vez (PROFISSIONAL)
+// Buscar produtos de uma vez
 $ids = implode(",", $produtos);
 
 $sql = "SELECT id, nome, preco FROM produtos WHERE id IN ($ids)";

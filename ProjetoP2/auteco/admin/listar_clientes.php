@@ -5,7 +5,7 @@ if (!isset($_SESSION["logado"])) {
     header("Location: login.php");
     exit;
 }
-include("../includes/conexao.php");
+include("conexao.php");
 
 $sql = "SELECT * FROM clientes";
 $result = $conn->query($sql);

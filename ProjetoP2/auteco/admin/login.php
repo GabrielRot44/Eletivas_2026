@@ -3,8 +3,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
-include("../includes/conexao.php");
-
+include("conexao.php");
+// Verificação de usuario e senha
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $usuario = $_POST["usuario"];
@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-        // se estiver usando senha simples:
         if ($senha == $user["senha"]) {
             
             $_SESSION["logado"] = true;

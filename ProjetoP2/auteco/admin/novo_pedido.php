@@ -1,5 +1,5 @@
 <?php
-include("../includes/conexao.php");
+include("conexao.php");
 $clientes = $conn->query("SELECT * FROM clientes");
 $produtos = $conn->query("SELECT * FROM produtos");
 ?>

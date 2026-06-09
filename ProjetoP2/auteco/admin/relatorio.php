@@ -1,17 +1,17 @@
 <?php
 session_start();
-include("../includes/conexao.php");
+include("conexao.php");
 
 if (!isset($_SESSION["logado"])) {
     header("Location: login.php");
     exit;
 }
 
-// 🔎 filtros
+
 $data_inicio = $_GET['data_inicio'] ?? '';
 $data_fim = $_GET['data_fim'] ?? '';
 
-// 🔥 filtro base (só pedidos concluídos)
+
 $filtro = "WHERE status = 'concluido'";
 
 if (!empty($data_inicio)) {
@@ -21,7 +21,7 @@ if (!empty($data_fim)) {
     $filtro .= " AND DATE(data_pedido) <= '$data_fim'";
 }
 
-// 📊 RESUMOS
+// RESUMOS
 $total = $conn->query("
     SELECT SUM(total) as total 
     FROM pedidos 
@@ -43,7 +43,7 @@ $total_mes = $conn->query("
     AND status = 'concluido'
 ")->fetch_assoc()['total'];
 
-// 📦 STATUS
+// STATUS
 $concluidos = $conn->query("
     SELECT COUNT(*) as total 
     FROM pedidos 
@@ -62,7 +62,7 @@ $cancelados = $conn->query("
     WHERE status='cancelado'
 ")->fetch_assoc()['total'];
 
-// 🥇 RANKING CORRIGIDO (SÓ PEDIDOS CONCLUÍDOS)
+// RanKING CORRIGIDO (SÓ PEDIDOS CONCLUÍDOS)
 $ranking = $conn->query("
     SELECT i.produto, 
            SUM(i.quantidade) as total_qtd,
@@ -74,7 +74,7 @@ $ranking = $conn->query("
     ORDER BY total_qtd DESC
     LIMIT 5
 ");
-// 🧑‍💼 CLIENTES QUE MAIS PEDIRAM
+// CLIENTES QUE MAIS PEDIRAM
 $ranking_clientes = $conn->query("
     SELECT c.nome, 
            COUNT(p.id) as total_pedidos,
@@ -117,7 +117,7 @@ body {
 
 <h2 class="mb-4 text-center">📊 Relatório Completo</h2>
 
-<!-- 🔎 FILTRO -->
+<!-- FILTRO -->
 <form method="GET" class="row g-3 mb-4">
     <div class="col-md-4">
         <input type="date" name="data_inicio" class="form-control" value="<?= $data_inicio ?>">
@@ -130,7 +130,7 @@ body {
     </div>
 </form>
 
-<!-- 📊 RESUMOS -->
+<!--RESUMOS -->
 <div class="row mb-4">
 
     <div class="col-md-4">
@@ -156,7 +156,7 @@ body {
 
 </div>
 
-<!-- 📦 STATUS -->
+<!--STATUS -->
 <div class="row mb-4">
 
     <div class="col-md-4">
@@ -182,7 +182,7 @@ body {
 
 </div>
 
-<!-- 🥇 RANKING -->
+<!--RANKING -->
 <div class="card p-4">
     <h5>🥇 Produtos Mais Vendidos</h5>
 
@@ -229,7 +229,7 @@ body {
         </tbody>
     </table>
 </div>
-<!-- 🔙 VOLTAR -->
+<!--VOLTAR -->
 <a href="dashboard.php" class="btn btn-danger mt-4">⬅ Voltar</a>
 
 </div>

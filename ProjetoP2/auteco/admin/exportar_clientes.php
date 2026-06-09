@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include("../includes/conexao.php");
+include("conexao.php");
 
 if (!isset($_SESSION["logado"])) {
     header("Location: login.php");

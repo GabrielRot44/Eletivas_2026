@@ -1,9 +1,9 @@
 <?php
-include("../includes/conexao.php");
+include("conexao.php");
 
 $id = $_GET["id"];
 
-// opcional: só cancela se ainda estiver em espera
+// Cancelará quando o pedido estiver em espera, ou seja, antes de ser concluído
 $stmt = $conn->prepare("
     UPDATE pedidos 
     SET status = 'cancelado' 
